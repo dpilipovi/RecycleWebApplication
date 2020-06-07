@@ -1,4 +1,4 @@
-package hr.zavrsni.pilipovic.recycle.entities;
+package hr.zavrsni.pilipovic.recycle.converter;
 
 import javax.persistence.AttributeConverter;
 import java.time.YearMonth;

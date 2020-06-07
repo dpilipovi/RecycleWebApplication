@@ -1,10 +1,10 @@
 package hr.zavrsni.pilipovic.recycle.controllers;
 
+import hr.zavrsni.pilipovic.recycle.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import hr.zavrsni.pilipovic.recycle.security.SecurityUtils;
-import hr.zavrsni.pilipovic.recycle.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
