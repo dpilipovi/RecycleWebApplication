@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
@@ -13,7 +14,7 @@ import javax.persistence.*;
 @ToString
 @Entity
 @Table(name="schedule")
-public class Schedule
+public class Schedule  implements Serializable
 {
 
     @Id

@@ -6,13 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class UserDTO {
+public class UserDTO implements Serializable {
 
     private long id;
     private String username;

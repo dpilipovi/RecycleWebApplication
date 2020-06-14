@@ -1,5 +1,7 @@
 package hr.zavrsni.pilipovic.recycle.controllers;
 
+import hr.zavrsni.pilipovic.recycle.entities.UserCommand;
+import hr.zavrsni.pilipovic.recycle.entities.UserDTO;
 import hr.zavrsni.pilipovic.recycle.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 
 
-import hr.zavrsni.pilipovic.recycle.entities.*;
+import javax.validation.Valid;
 
 
 @CrossOrigin(origins = "http://localhost:8080")
@@ -48,7 +50,7 @@ public class UserController
 
 
     @PutMapping
-    public ResponseEntity<UserDTO> editUser(@RequestBody User editedUser)
+    public ResponseEntity<UserDTO> editUser(@Valid @RequestBody UserCommand editedUser)
     {
         return userService.editUser(editedUser).map(
                 user -> ResponseEntity
@@ -62,7 +64,7 @@ public class UserController
     }
 
     @PostMapping
-    public ResponseEntity<UserDTO> addUser(@RequestBody UserCommand user)
+    public ResponseEntity<UserDTO> addUser(@Valid @RequestBody UserCommand user)
     {
         return userService.addUser(user).map(
                 _user -> ResponseEntity

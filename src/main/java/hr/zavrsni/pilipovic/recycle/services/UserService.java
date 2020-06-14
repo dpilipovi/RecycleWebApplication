@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface UserService {
 
-    Optional<UserDTO> editUser(User editedUser);
+    Optional<UserDTO> editUser(UserCommand editedUser);
 
     Optional<UserDTO> findByUsername(String username);
 

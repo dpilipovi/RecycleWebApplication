@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.YearMonth;
 //import javax.persistence.EmbeddedId;
 
@@ -16,7 +17,7 @@ import java.time.YearMonth;
 @ToString
 @Entity
 @Table(name="recycle")
-public class Recycle {
+public class Recycle  implements Serializable  {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)

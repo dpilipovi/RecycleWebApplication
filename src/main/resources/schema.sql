@@ -1,6 +1,6 @@
 create table if not exists user
 (
-id int primary key not null,
+id int AUTO_INCREMENT primary key,
 username varchar(100) not null,
 password varchar(250) not null,
 firstname varchar(250) not null,
@@ -11,7 +11,7 @@ email varchar(250) not null
 
 create table if not exists authority
 (
-id int primary key not null,
+id int AUTO_INCREMENT primary key ,
 name varchar(100) not null
 );
 

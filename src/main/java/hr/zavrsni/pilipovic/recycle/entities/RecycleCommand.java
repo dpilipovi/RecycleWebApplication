@@ -9,13 +9,14 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.time.YearMonth;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class RecycleCommand {
+public class RecycleCommand   implements Serializable {
 
 
 

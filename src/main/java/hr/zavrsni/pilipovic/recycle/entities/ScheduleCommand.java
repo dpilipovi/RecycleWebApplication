@@ -7,12 +7,13 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class ScheduleCommand
+public class ScheduleCommand  implements Serializable
 {
 
 

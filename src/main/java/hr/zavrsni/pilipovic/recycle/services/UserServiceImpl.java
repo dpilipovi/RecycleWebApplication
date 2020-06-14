@@ -27,21 +27,19 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    public Optional<UserDTO> editUser(User editedUser) {
+    public Optional<UserDTO> editUser(UserCommand editedUser) {
 
-        User user = new User();
+        Optional<User> optional = userRepository.findById(editedUser.getId());
 
-        user.setId(editedUser.getId());
+        User user = optional.get();
+
         user.setFirstname(editedUser.getFirstname());
         user.setLastname(editedUser.getLastname());
         user.setAddress(editedUser.getAddress());
         user.setEmail(editedUser.getEmail());
         user.setUsername(editedUser.getUsername());
+        user.setPassword(bCryptPasswordEncoder.encode(editedUser.getPassword()));
 
-        if(editedUser.getPassword() !="" && user.getPassword() != bCryptPasswordEncoder.encode(editedUser.getPassword()))
-        {
-            user.setPassword(bCryptPasswordEncoder.encode(editedUser.getPassword()));
-        }
 
         return Optional.of(mapToUserDTO(userRepository.save(user)));
     }
@@ -53,8 +51,9 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    public Optional<UserDTO> addUser(UserCommand user)
+    public Optional<UserDTO> addUser(UserCommand userCommand)
     {
+        User user = new User(userCommand.getFirstname(),userCommand.getLastname(),userCommand.getUsername(),userCommand.getAddress(),bCryptPasswordEncoder.encode(userCommand.getPassword()),userCommand.getEmail());
         return Optional.of(mapToUserDTO(userRepository.save(user)));
     }
 

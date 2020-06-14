@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.YearMonth;
 
 
@@ -14,7 +15,7 @@ import java.time.YearMonth;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class RecycleDTO {
+public class RecycleDTO  implements Serializable {
 
     private int amount;
 

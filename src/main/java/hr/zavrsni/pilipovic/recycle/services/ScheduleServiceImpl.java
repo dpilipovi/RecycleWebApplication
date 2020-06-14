@@ -29,6 +29,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     {
       ScheduleDTO scheduleDTO = new ScheduleDTO();
 
+      scheduleDTO.setId(schedule.getId());
       scheduleDTO.setAddress(schedule.getAddress());
       scheduleDTO.setDay(schedule.getDay());
       scheduleDTO.setType(schedule.getType());
