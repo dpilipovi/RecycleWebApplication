@@ -42,7 +42,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public void configure (WebSecurity web) {
         web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**")
-        .antMatchers("/h2 console/**");
+        .antMatchers("/h2-console/**");
     }
 
     @Override
@@ -56,6 +56,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         .disable()
         .authorizeRequests()
         .antMatchers("/api/authenticate").permitAll()
+        .antMatchers("/api/user").permitAll()
         .antMatchers("/api/schedule").permitAll()
         .anyRequest().authenticated()
         .and()

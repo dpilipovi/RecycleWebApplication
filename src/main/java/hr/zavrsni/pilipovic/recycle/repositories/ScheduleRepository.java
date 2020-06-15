@@ -15,4 +15,6 @@ public interface ScheduleRepository extends JpaRepository<Schedule,Long>
 
 	Schedule save(ScheduleCommand scheduleCommand);
 
+	void deleteById(Long id);
+
 }

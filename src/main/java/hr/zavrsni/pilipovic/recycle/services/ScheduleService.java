@@ -11,4 +11,8 @@ public interface ScheduleService {
     List<ScheduleDTO> findAll();
 
     Optional<ScheduleDTO> save(ScheduleCommand scheduleCommand);
+
+    void deleteById(long id);
+
+    Optional<ScheduleDTO> editSchedule(ScheduleCommand scheduleCommand);
 }

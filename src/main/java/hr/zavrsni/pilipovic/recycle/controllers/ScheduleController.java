@@ -10,14 +10,11 @@ import hr.zavrsni.pilipovic.recycle.entities.ScheduleDTO;
 import hr.zavrsni.pilipovic.recycle.services.ScheduleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.validation.Valid;
 
 
 @CrossOrigin(origins = "http://localhost:8080")
@@ -32,8 +29,8 @@ public class ScheduleController
     {
         this.scheduleService = scheduleService;
     }
-    
 
+    @Secured({"ROLE_ADMIN"})
     @PostMapping
     public ResponseEntity<ScheduleDTO> saveSchedule(@RequestBody ScheduleCommand scheduleCommand) {
 
@@ -46,19 +43,35 @@ public class ScheduleController
                               .status(HttpStatus.EXPECTATION_FAILED)
                               .build()
               );
-        
     }
-    
-    /*@GetMapping("")
-    public List<Schedule> getByAddress(@RequestParam String address)
-    {
-        return repository.findByAddress(address);
-    }*/
 
     @GetMapping
-    public List<ScheduleDTO> getSchedule()
+    public List<ScheduleDTO> findAll()
     {
         return scheduleService.findAll();
+    }
+
+    @Secured({"ROLE_ADMIN"})
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable long id){
+
+        scheduleService.deleteById(id);
+    }
+
+    @Secured({"ROLE_ADMIN"})
+    @PutMapping
+    public ResponseEntity<ScheduleDTO> editSchedule(@Valid @RequestBody ScheduleCommand scheduleCommand)
+    {
+        return scheduleService.editSchedule(scheduleCommand).map(
+                schedule -> ResponseEntity
+                        .status(HttpStatus.OK)
+                        .body(schedule))
+                .orElseGet(
+                        () -> ResponseEntity
+                                .status(HttpStatus.NOT_FOUND)
+                                .build()
+                );
     }
 
 }

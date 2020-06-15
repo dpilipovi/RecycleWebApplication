@@ -25,6 +25,20 @@ public class ScheduleServiceImpl implements ScheduleService {
         return Optional.of(mapToScheduleDTO(scheduleRepository.save(scheduleCommand)));
     }
 
+    @Override
+    public void deleteById(long id) {
+        scheduleRepository.deleteById(id);
+    }
+
+    @Override
+    public Optional<ScheduleDTO> editSchedule(ScheduleCommand scheduleCommand) {
+
+        Schedule schedule = new Schedule(scheduleCommand.getAddress(),scheduleCommand.getType(),scheduleCommand.getDay());
+
+        return Optional.of(mapToScheduleDTO(scheduleRepository.save(schedule)));
+
+    }
+
     private ScheduleDTO mapToScheduleDTO(Schedule schedule)
     {
       ScheduleDTO scheduleDTO = new ScheduleDTO();

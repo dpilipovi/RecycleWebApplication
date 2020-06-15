@@ -5,6 +5,7 @@ insert into authority (id, name) values (1, 'ROLE_ADMIN');
 insert into authority (id, name) values (2, 'ROLE_USER');
 
 insert into user_authority (user_id, authority_id) values (1, 1);
+/*insert into user_authority (user_id, authority_id) values (1, 2);*/
 insert into user_authority (user_id, authority_id) values (2, 2);
 
 insert into schedule (id,address,day,type) values(1,'Ilica','Friday','Plastic');
@@ -43,7 +44,6 @@ insert into recycle (id, amount, year_month, type) values (14, 1, 202003,'Metal'
 insert into recycle (id, amount, year_month, type) values (15, 4, 202003,'Plastic');
 insert into recycle (id, amount, year_month, type) values (16, 2, 202003,'Paper');
 
-
 insert into user_recycle (user_id, recycle_id) values (1, 1);
 insert into user_recycle (user_id, recycle_id) values (1, 2);
 insert into user_recycle (user_id, recycle_id) values (1, 3);
@@ -63,3 +63,8 @@ insert into user_recycle (user_id, recycle_id) values (2, 13);
 insert into user_recycle (user_id, recycle_id) values (2, 14);
 insert into user_recycle (user_id, recycle_id) values (2, 15);
 insert into user_recycle (user_id, recycle_id) values (2, 16);
+
+insert into vehicle (id, brand, first_registration_year, location) values (1, 'Mercedes', 2007, 'Ilica 1');
+insert into vehicle (id, brand, first_registration_year, location) values (2, 'Mercedes', 2007, 'Savska cesta 1');
+insert into vehicle (id, brand, first_registration_year, location) values (3, 'Mercedes', 2007, 'Trg bana Josipa Jelacica 1');
+insert into vehicle (id, brand, first_registration_year, location) values (4, 'MAN', 2007, 'Vukovarska ulica 1');

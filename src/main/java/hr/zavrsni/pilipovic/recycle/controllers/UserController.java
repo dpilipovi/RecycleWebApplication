@@ -4,19 +4,14 @@ import hr.zavrsni.pilipovic.recycle.entities.UserCommand;
 import hr.zavrsni.pilipovic.recycle.entities.UserDTO;
 import hr.zavrsni.pilipovic.recycle.services.UserService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.web.bind.annotation.*;
 import hr.zavrsni.pilipovic.recycle.security.SecurityUtils;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @CrossOrigin(origins = "http://localhost:8080")
@@ -33,6 +28,7 @@ public class UserController
         this.userService = userService;
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @GetMapping("/current-user")
     public ResponseEntity<UserDTO> getCurrentUser()
     {
@@ -49,6 +45,7 @@ public class UserController
     }
 
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @PutMapping
     public ResponseEntity<UserDTO> editUser(@Valid @RequestBody UserCommand editedUser)
     {
@@ -75,6 +72,20 @@ public class UserController
                                 .status(HttpStatus.NOT_FOUND)
                                 .build()
                 );
+    }
+
+    @Secured({"ROLE_ADMIN"})
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{username}")
+    public void delete(@PathVariable String username){
+
+        userService.deleteByUsername(username);
+    }
+
+    @GetMapping
+    public List<UserDTO> findAll()
+    {
+        return userService.findAll();
     }
 
 }

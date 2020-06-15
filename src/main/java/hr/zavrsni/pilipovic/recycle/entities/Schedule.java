@@ -27,6 +27,13 @@ public class Schedule  implements Serializable
 
     @Column(name="day")
     private String day;
+
+    public Schedule(String address, String type, String day)
+    {
+        this.address = address;
+        this.type = type;
+        this.day = day;
+    }
     
 
 

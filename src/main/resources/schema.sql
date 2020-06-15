@@ -11,7 +11,7 @@ email varchar(250) not null
 
 create table if not exists authority
 (
-id int AUTO_INCREMENT primary key ,
+id int primary key,
 name varchar(100) not null
 );
 
@@ -52,5 +52,12 @@ create table if not exists schedule
  day varchar(20) not null,
  address varchar(250) not null,
  type varchar(50) not null
-)
+);
 
+create table if not exists vehicle
+(
+ id int primary key,
+ brand varchar(50) not null,
+ first_registration_year int(4) not null,
+ location varchar(250) not null
+);

@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,20 +34,15 @@ public class User implements Serializable
 
     
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name="firstname")
     private String firstname;
-    @Column(name="lastname")
     private String lastname;
     @Column(name="username", unique = true)
     private String username;
     @Column(name="email", unique = true)
     private String email;
-    @Column(name="password")
     private String password;
-    @Column(name="address")
     private String address;
     @ManyToMany(targetEntity = Authority.class)
     @JoinTable(

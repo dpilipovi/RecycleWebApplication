@@ -30,7 +30,7 @@ public class LoginController {
 
     @PostMapping("/authenticate")
     public ResponseEntity<JWTToken> authenticate(@Valid @RequestBody LoginController.LoginDTO login) {
-        System.out.println(login.getUsername());
+      //  System.out.println("login username "+login.getUsername());
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                 login.getUsername(),
                 login.getPassword()
@@ -40,6 +40,8 @@ public class LoginController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = tokenProvider.createToken(authentication);
+
+       // System.out.println("token = "+jwt);
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(JwtFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
