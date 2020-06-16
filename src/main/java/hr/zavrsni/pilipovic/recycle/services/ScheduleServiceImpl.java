@@ -22,7 +22,9 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     @Override
     public Optional<ScheduleDTO> save(ScheduleCommand scheduleCommand) {
-        return Optional.of(mapToScheduleDTO(scheduleRepository.save(scheduleCommand)));
+
+        Schedule schedule = new Schedule(scheduleCommand.getAddress(),scheduleCommand.getType(),scheduleCommand.getDay());
+        return Optional.of(mapToScheduleDTO(scheduleRepository.save(schedule)));
     }
 
     @Override
@@ -33,7 +35,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public Optional<ScheduleDTO> editSchedule(ScheduleCommand scheduleCommand) {
 
-        Schedule schedule = new Schedule(scheduleCommand.getAddress(),scheduleCommand.getType(),scheduleCommand.getDay());
+        Schedule schedule = new Schedule(scheduleCommand.getId(),scheduleCommand.getAddress(),scheduleCommand.getType(),scheduleCommand.getDay());
 
         return Optional.of(mapToScheduleDTO(scheduleRepository.save(schedule)));
 

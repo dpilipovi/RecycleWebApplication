@@ -65,7 +65,7 @@ public class UserController
     {
         return userService.addUser(user).map(
                 _user -> ResponseEntity
-                        .status(HttpStatus.OK)
+                        .status(HttpStatus.CREATED)
                         .body(_user))
                 .orElseGet(
                         () -> ResponseEntity
@@ -82,10 +82,43 @@ public class UserController
         userService.deleteByUsername(username);
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public List<UserDTO> findAll()
     {
         return userService.findAll();
+    }
+
+    @Secured({"ROLE_ADMIN"})
+    @GetMapping("/{username}")
+    public ResponseEntity<UserDTO> findByUsername(@PathVariable String username)
+    {
+        return userService.findByUsername(username).map(
+                        user ->
+                            ResponseEntity
+                                    .status(HttpStatus.OK)
+                                    .body(user))
+
+                        .orElseGet(
+                        () ->   ResponseEntity
+                                    .status(HttpStatus.NOT_FOUND)
+                                    .build()
+                        );
+    }
+
+    @Secured({"ROLE_ADMIN"})
+    @PutMapping("makeAdmin/{username}")
+    public ResponseEntity<UserDTO> makeAdmin(@PathVariable String username)
+    {
+        return userService.makeAdmin(username).map(
+                user -> ResponseEntity
+                        .status(HttpStatus.OK)
+                        .body(user))
+                .orElseGet(
+                        () -> ResponseEntity
+                                .status(HttpStatus.NOT_FOUND)
+                                .build()
+                );
     }
 
 }

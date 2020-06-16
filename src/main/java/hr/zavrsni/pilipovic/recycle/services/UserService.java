@@ -19,4 +19,6 @@ public interface UserService {
     void deleteByUsername(String username);
 
     List<UserDTO> findAll();
+
+    Optional<UserDTO> makeAdmin(String username);
 }

@@ -32,7 +32,7 @@ public class ScheduleController
 
     @Secured({"ROLE_ADMIN"})
     @PostMapping
-    public ResponseEntity<ScheduleDTO> saveSchedule(@RequestBody ScheduleCommand scheduleCommand) {
+    public ResponseEntity<ScheduleDTO> saveSchedule(@Valid @RequestBody ScheduleCommand scheduleCommand) {
 
       return scheduleService.save(scheduleCommand).map(
               schedule -> ResponseEntity
@@ -45,6 +45,7 @@ public class ScheduleController
               );
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public List<ScheduleDTO> findAll()
     {

@@ -30,7 +30,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public Optional<VehicleDTO> save(VehicleCommand vehicleCommand) {
-        Vehicle vehicle = new Vehicle(vehicleCommand.getBrand(), vehicleCommand.getFirstRegistrationYear(),vehicleCommand.getLocation());
+        Vehicle vehicle = new Vehicle(vehicleCommand.getBrand(), vehicleCommand.getFirstRegistrationYear(),"Vlaška ulica 1");
 
         return Optional.of(mapToVehicleDTO(vehicleRepository.save(vehicle)));
     }
@@ -40,6 +40,19 @@ public class VehicleServiceImpl implements VehicleService {
         vehicleRepository.deleteById(id);
     }
 
+    @Override
+    public Optional<VehicleDTO> editVehicle(VehicleCommand vehicleCommand) {
+        Optional<Vehicle> optional = vehicleRepository.findById(vehicleCommand.getId());
+
+        Vehicle vehicle = optional.get();
+
+        vehicle.setBrand(vehicleCommand.getBrand());
+        vehicle.setFirstRegistrationYear(vehicleCommand.getFirstRegistrationYear());
+
+
+        return Optional.of(mapToVehicleDTO(vehicleRepository.save(vehicle)));
+    }
+
     private VehicleDTO mapToVehicleDTO(final Vehicle vehicle)
     {
         VehicleDTO vehicleDTO = new VehicleDTO();
@@ -47,6 +60,7 @@ public class VehicleServiceImpl implements VehicleService {
         vehicleDTO.setId(vehicle.getId());
         vehicleDTO.setBrand(vehicle.getBrand());
         vehicleDTO.setFirstRegistrationYear(vehicle.getFirstRegistrationYear());
+        vehicleDTO.setLocation(vehicle.getLocation());
 
         return vehicleDTO;
     }

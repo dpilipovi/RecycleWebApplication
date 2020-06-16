@@ -24,6 +24,7 @@ public class VehicleController {
         this.vehicleService = vehicleService;
     }
 
+    @ResponseStatus(HttpStatus.OK)
     @Secured({"ROLE_ADMIN"})
     @GetMapping
     public List<VehicleDTO> findAll()
@@ -70,4 +71,21 @@ public class VehicleController {
 
         vehicleService.deleteById(id);
     }
+
+    @Secured({"ROLE_ADMIN"})
+    @PutMapping
+    public ResponseEntity<VehicleDTO> editVehicle(@Valid @RequestBody VehicleCommand vehicleCommand)
+    {
+        return vehicleService.editVehicle(vehicleCommand)
+                .map(
+                        vehicle -> ResponseEntity
+                                .status(HttpStatus.OK)
+                                .body(vehicle))
+                .orElseGet(
+                        () -> ResponseEntity
+                                .status(HttpStatus.CONFLICT)
+                                .build()
+                );
+    }
+
 }

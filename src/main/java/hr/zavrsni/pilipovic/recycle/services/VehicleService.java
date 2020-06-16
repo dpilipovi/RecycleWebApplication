@@ -16,4 +16,6 @@ public interface VehicleService {
     Optional<VehicleDTO> save(VehicleCommand vehicleCommand);
 
     void deleteById(long id);
+
+    Optional<VehicleDTO> editVehicle(VehicleCommand vehicleCommand);
 }

@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
@@ -16,7 +17,8 @@ import java.io.Serializable;
 public class ScheduleCommand  implements Serializable
 {
 
-
+    @NotNull(message="Id must not be null")
+    private long id;
     @NotBlank(message = "Address must not be empty")
     private String address;
     @NotBlank(message = "Type must not be empty")

@@ -14,10 +14,11 @@ import javax.validation.constraints.NotNull;
 @ToString
 public class VehicleCommand {
 
+    @NotNull(message="Id must not be null")
+    private long id;
     @NotBlank(message = "Brand must not be blank!")
     private String brand;
     @NotNull(message = "Registration must not be null!")
     private int firstRegistrationYear;
-    @NotBlank(message = "Location must not be blank!")
-    private String location;
+
 }

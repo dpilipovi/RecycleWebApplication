@@ -65,6 +65,6 @@ insert into user_recycle (user_id, recycle_id) values (2, 15);
 insert into user_recycle (user_id, recycle_id) values (2, 16);
 
 insert into vehicle (id, brand, first_registration_year, location) values (1, 'Mercedes', 2007, 'Ilica 1');
-insert into vehicle (id, brand, first_registration_year, location) values (2, 'Mercedes', 2007, 'Savska cesta 1');
-insert into vehicle (id, brand, first_registration_year, location) values (3, 'Mercedes', 2007, 'Trg bana Josipa Jelacica 1');
-insert into vehicle (id, brand, first_registration_year, location) values (4, 'MAN', 2007, 'Vukovarska ulica 1');
+insert into vehicle (id, brand, first_registration_year, location) values (2, 'Mercedes', 2017, 'Vatikanska ulica 1');
+insert into vehicle (id, brand, first_registration_year, location) values (3, 'Mercedes', 2013, 'Trg bana Josipa Jelacica 1');
+insert into vehicle (id, brand, first_registration_year, location) values (4, 'MAN', 2014, 'Ulica grada Vukovara 1');

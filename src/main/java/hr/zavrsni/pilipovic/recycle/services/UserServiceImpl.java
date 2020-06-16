@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
         user.setAddress(editedUser.getAddress());
         user.setEmail(editedUser.getEmail());
         user.setUsername(editedUser.getUsername());
-        user.setPassword(bCryptPasswordEncoder.encode(editedUser.getPassword()));
+        if(editedUser.getPassword().compareTo("dont change") != 0) user.setPassword(bCryptPasswordEncoder.encode(editedUser.getPassword()));
 
 
         return Optional.of(mapToUserDTO(userRepository.save(user)));
@@ -77,6 +77,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDTO> findAll() {
         return userRepository.findAll().stream().map(this::mapToUserDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<UserDTO> makeAdmin(String username) {
+
+        Optional<User> optional = userRepository.findByUsername(username);
+
+        User user = optional.get();
+
+        Set<Authority> set = new HashSet<>();
+        Authority role_admin = authorityRepository.findByName("ROLE_ADMIN");
+        set.add(role_admin);
+
+        user.setAuthorities(set);
+
+        return Optional.of(mapToUserDTO(userRepository.save(user)));
+
     }
 
 
