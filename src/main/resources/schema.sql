@@ -49,7 +49,7 @@ FOREIGN KEY (`recycle_id`) REFERENCES `recycle` (`id`)
 create table if not exists schedule
 (
  id int AUTO_INCREMENT primary key,
- day varchar(20) not null,
+ day int not null,
  address varchar(250) not null,
  type varchar(50) not null
 );

@@ -18,6 +18,6 @@ public class ScheduleDTO  implements Serializable
     private long id;
     private String address;
     private String type;
-    private String day;
+    private int day;
 
 }

@@ -8,15 +8,15 @@ insert into user_authority (user_id, authority_id) values (1, 1);
 /*insert into user_authority (user_id, authority_id) values (1, 2);*/
 insert into user_authority (user_id, authority_id) values (2, 2);
 
-insert into schedule (id,address,day,type) values(1,'Ilica','Friday','Plastic');
-insert into schedule (id,address,day,type) values(2,'Ilica','Wednesday','Paper');
-insert into schedule (id,address,day,type) values(3,'Ilica','Thursday','Glass');
-insert into schedule (id,address,day,type) values(4,'Ilica','Monday','Metal');
+insert into schedule (id,address,day,type) values(1,'Ilica',5,'Plastic');
+insert into schedule (id,address,day,type) values(2,'Ilica',3,'Paper');
+insert into schedule (id,address,day,type) values(3,'Ilica',2,'Glass');
+insert into schedule (id,address,day,type) values(4,'Ilica',1,'Metal');
 
-insert into schedule (id,address,day,type) values(5,'Vrbik','Monday','Glass');
-insert into schedule (id,address,day,type) values(6,'Vrbik','Tuesday','Metal');
-insert into schedule (id,address,day,type) values(7,'Vrbik','Wednesday','Plastic');
-insert into schedule (id,address,day,type) values(8,'Vrbik','Thursday','Paper');
+insert into schedule (id,address,day,type) values(5,'Vrbik',1,'Glass');
+insert into schedule (id,address,day,type) values(6,'Vrbik',2,'Metal');
+insert into schedule (id,address,day,type) values(7,'Vrbik',3,'Plastic');
+insert into schedule (id,address,day,type) values(8,'Vrbik',4,'Paper');
 
 /*
 insert into type values(1,'Plastic');

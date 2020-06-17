@@ -26,9 +26,9 @@ public class Schedule  implements Serializable
     private String type;
 
     @Column(name="day")
-    private String day;
+    private int day;
 
-    public Schedule(String address, String type, String day)
+    public Schedule(String address, String type, int day)
     {
         this.address = address;
         this.type = type;

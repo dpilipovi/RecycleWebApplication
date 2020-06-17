@@ -23,8 +23,8 @@ public class ScheduleCommand  implements Serializable
     private String address;
     @NotBlank(message = "Type must not be empty")
     private String type;
-    @NotBlank(message = "Day must not be empty")
-    private String day;
+    @NotNull(message = "Day must not be null")
+    private int day;
 
 
 }
