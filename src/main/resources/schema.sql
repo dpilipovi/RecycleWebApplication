@@ -1,3 +1,12 @@
+/*DROP TABLE IF EXISTS user ;
+DROP TABLE IF EXISTS authority ;
+DROP TABLE IF EXISTS user_authority ;
+DROP TABLE IF EXISTS user_recycle ;
+DROP TABLE IF EXISTS recycle ;
+DROP TABLE IF EXISTS schedule ;
+DROP TABLE IF EXISTS vehicle ;
+*/
+
 create table if not exists user
 (
 id int AUTO_INCREMENT primary key,

@@ -35,7 +35,13 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public Optional<ScheduleDTO> editSchedule(ScheduleCommand scheduleCommand) {
 
-        Schedule schedule = new Schedule(scheduleCommand.getId(),scheduleCommand.getAddress(),scheduleCommand.getType(),scheduleCommand.getDay());
+        Optional<Schedule> optional = scheduleRepository.findById(scheduleCommand.getId());
+
+        Schedule schedule = optional.get();
+
+        schedule.setAddress(scheduleCommand.getAddress());
+        schedule.setDay(scheduleCommand.getDay());
+        schedule.setType(scheduleCommand.getType());
 
         return Optional.of(mapToScheduleDTO(scheduleRepository.save(schedule)));
 

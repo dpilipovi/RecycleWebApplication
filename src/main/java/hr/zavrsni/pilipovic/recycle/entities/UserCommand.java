@@ -32,6 +32,15 @@ public class UserCommand implements Serializable {
         this.password = password;
     }
 
+    public UserCommand(@NotBlank(message = "First name must not be empty") String firstname, @NotBlank(message = "Last name must not be empty") String lastname, @NotBlank(message = "email must not be empty") String email, @NotBlank(message = "Address must not be empty") String address, @NotBlank(message = "Username must not be empty") String username, @NotBlank(message = "Password must not be empty") String password) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.address = address;
+        this.username = username;
+        this.password = password;
+    }
+
     public UserCommand(){}
 
     public String getFirstname() {

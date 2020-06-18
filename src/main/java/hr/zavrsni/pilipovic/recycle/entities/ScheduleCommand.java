@@ -26,5 +26,11 @@ public class ScheduleCommand  implements Serializable
     @NotNull(message = "Day must not be null")
     private int day;
 
+    public ScheduleCommand(String address, String type, int day)
+    {
+        this.address = address;
+        this.type = type;
+        this.day = day;
+    }
 
 }
