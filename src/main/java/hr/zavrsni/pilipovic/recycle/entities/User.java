@@ -39,16 +39,16 @@ public class User implements Serializable
     @ManyToMany(targetEntity = Authority.class)
     @JoinTable(
             name = "user_authority",
-            joinColumns = { @JoinColumn(name = "user_id") },
-            inverseJoinColumns = { @JoinColumn(name = "authority_id") }
+            joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "authority_id", referencedColumnName = "id", nullable = false)}
     )
     private Set<Authority> authorities;
 
     @OneToMany(targetEntity = Recycle.class, cascade= CascadeType.ALL /*{CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.PERSIST}*/)
     @JoinTable(
             name = "user_recycle",
-            joinColumns = { @JoinColumn(name = "user_id" ), },
-            inverseJoinColumns = { @JoinColumn(name = "recycle_id")}
+            joinColumns = { @JoinColumn(name = "user_id" , referencedColumnName = "id", nullable = false) },
+            inverseJoinColumns = { @JoinColumn(name = "recycle_id", referencedColumnName = "id", nullable = false)}
     )
     @JsonIgnoreProperties("user")
     private Set<Recycle> recycles;
