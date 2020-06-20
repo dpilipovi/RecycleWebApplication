@@ -17,6 +17,8 @@ import java.time.YearMonth;
 @ToString
 public class RecycleDTO  implements Serializable {
 
+    private long id;
+
     private int amount;
 
     @Convert(converter = YearMonthIntegerAttributeConverter.class)

@@ -9,10 +9,7 @@ import hr.zavrsni.pilipovic.recycle.repositories.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,12 +36,16 @@ public class UserServiceImpl implements UserService {
 
         User user = optional.get();
 
+        System.out.println(editedUser.toString());
+        System.out.println(editedUser.getRecycles().toString());
+
         user.setFirstname(editedUser.getFirstname());
         user.setLastname(editedUser.getLastname());
         user.setAddress(editedUser.getAddress());
         user.setEmail(editedUser.getEmail());
         user.setUsername(editedUser.getUsername());
         if(editedUser.getPassword().compareTo("dont change") != 0) user.setPassword(bCryptPasswordEncoder.encode(editedUser.getPassword()));
+        user.setRecycles(editedUser.getRecycles());
 
 
         return Optional.of(mapToUserDTO(userRepository.save(user)));
@@ -101,8 +102,6 @@ public class UserServiceImpl implements UserService {
     {
         UserDTO userDTO = new UserDTO();
 
-      /*  System.out.println("mapiranje");
-        System.out.println(user.toString());*/
 
         userDTO.setId(user.getId());
         userDTO.setFirstname(user.getFirstname());
@@ -111,9 +110,8 @@ public class UserServiceImpl implements UserService {
         if(user.getAuthorities() != null) userDTO.setAuthorities(user.getAuthorities().stream().map(Authority::getName).collect(Collectors.toSet()));
         userDTO.setEmail(user.getEmail());
         userDTO.setAddress(user.getAddress());
-        if(user.getRecycles() != null)  userDTO.setUser_recycle(user.getRecycles());
+        if(user.getRecycles() != null)  userDTO.setRecycles(user.getRecycles());
 
-        //System.out.println(userDTO.toString());
 
         return userDTO;
     }

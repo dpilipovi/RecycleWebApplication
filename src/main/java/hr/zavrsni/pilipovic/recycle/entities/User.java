@@ -9,16 +9,8 @@ import lombok.ToString;
 import java.io.Serializable;
 import java.util.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -51,7 +43,8 @@ public class User implements Serializable
             inverseJoinColumns = { @JoinColumn(name = "authority_id") }
     )
     private Set<Authority> authorities;
-    @OneToMany(targetEntity = Recycle.class)
+
+    @OneToMany(targetEntity = Recycle.class, cascade= CascadeType.ALL /*{CascadeType.REMOVE, CascadeType.REFRESH, CascadeType.PERSIST}*/)
     @JoinTable(
             name = "user_recycle",
             joinColumns = { @JoinColumn(name = "user_id" ), },
@@ -59,6 +52,9 @@ public class User implements Serializable
     )
     @JsonIgnoreProperties("user")
     private Set<Recycle> recycles;
+
+
+
 
     public User(String firstname, String lastname, String username, String address, String password, String email)
     {

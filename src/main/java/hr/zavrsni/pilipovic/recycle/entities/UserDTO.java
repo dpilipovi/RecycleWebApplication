@@ -22,7 +22,7 @@ public class UserDTO implements Serializable {
     private String email;
     private String address;
     private Set<String> authorities;
-    private Set<Recycle> user_recycle;
+    private Set<Recycle> recycles;
 
 
 }

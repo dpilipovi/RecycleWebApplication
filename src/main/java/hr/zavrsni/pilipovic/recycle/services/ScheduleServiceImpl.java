@@ -2,7 +2,6 @@ package hr.zavrsni.pilipovic.recycle.services;
 
 import hr.zavrsni.pilipovic.recycle.entities.*;
 import hr.zavrsni.pilipovic.recycle.repositories.ScheduleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +11,14 @@ import java.util.stream.Collectors;
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
 
-    @Autowired
+
     private ScheduleRepository scheduleRepository;
+
+    public ScheduleServiceImpl(ScheduleRepository scheduleRepository) {
+        this.scheduleRepository = scheduleRepository;
+
+    }
+
 
     @Override
     public List<ScheduleDTO> findAll() {

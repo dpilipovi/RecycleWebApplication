@@ -38,5 +38,15 @@ public class Recycle  implements Serializable  {
     private String type;
 
 
-   
+    public Recycle(int amount, YearMonth yearMonth, String type)
+    {
+        this.amount = amount;
+        this.yearMonth = yearMonth;
+        this.type = type;
+
+    }
+
+
+
+
 }

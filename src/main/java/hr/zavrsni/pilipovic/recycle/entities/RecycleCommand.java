@@ -18,7 +18,7 @@ import java.time.YearMonth;
 @ToString
 public class RecycleCommand   implements Serializable {
 
-
+    private long id;
 
     @NotNull(message = "Amount must not be null")
     private int amount;
@@ -29,7 +29,6 @@ public class RecycleCommand   implements Serializable {
 
     @NotBlank(message = "Type must not be empty")
     private String type;
-
 
 
 }

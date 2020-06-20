@@ -28,7 +28,7 @@ FOREIGN KEY (`authority_id`) REFERENCES `authority` (`id`)
 
 create table if not exists recycle
 (
-id int primary key,
+id int AUTO_INCREMENT primary key ,
 amount int not null,
 year_month mediumint not null,
 type varchar(50) not null
