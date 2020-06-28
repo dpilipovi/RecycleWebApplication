@@ -69,7 +69,7 @@ public class AnnouncementController {
     }
 
     @PutMapping
-    public ResponseEntity<AnnouncementDTO> editVehicle(@Valid @RequestBody AnnouncementCommand announcementCommand)
+    public ResponseEntity<AnnouncementDTO> editAnnouncement(@Valid @RequestBody AnnouncementCommand announcementCommand)
     {
         return announcementService.editAnnouncement(announcementCommand)
                 .map(

@@ -23,4 +23,9 @@ public class AnnouncementCommand implements Serializable {
     @NotBlank
     private String title;
 
+
+    public AnnouncementCommand(String title, String message) {
+        this.title = title;
+        this.message = message;
+    }
 }

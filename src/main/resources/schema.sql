@@ -76,6 +76,6 @@ create table if not exists announcement
  id int AUTO_INCREMENT primary key,
  message text not null,
  title varchar(100) not null,
- created timestamp not null,
+ created timestamp,
  updated timestamp
 );

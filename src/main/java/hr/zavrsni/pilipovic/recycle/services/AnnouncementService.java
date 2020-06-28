@@ -14,7 +14,7 @@ public interface AnnouncementService {
     @Secured({"ROLE_ADMIN"})
     Optional<AnnouncementDTO> findById(long id);
 
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     List<AnnouncementDTO> findAll();
 
     @Secured({"ROLE_ADMIN"})
