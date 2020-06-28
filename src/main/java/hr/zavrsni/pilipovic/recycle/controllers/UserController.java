@@ -27,7 +27,7 @@ public class UserController
         this.userService = userService;
     }
 
-    @Secured({"ROLE_ADMIN", "ROLE_USER"})
+
     @GetMapping("/current-user")
     public ResponseEntity<UserDTO> getCurrentUser()
     {
@@ -44,7 +44,7 @@ public class UserController
     }
 
 
-    @Secured({"ROLE_ADMIN", "ROLE_USER"})
+
     @PutMapping
     public ResponseEntity<UserDTO> editUser(@Valid @RequestBody UserCommand editedUser)
     {
@@ -73,7 +73,7 @@ public class UserController
                 );
     }
 
-    @Secured({"ROLE_ADMIN"})
+
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{username}")
     public void delete(@PathVariable String username){
@@ -81,7 +81,7 @@ public class UserController
         userService.deleteByUsername(username);
     }
 
-    @Secured({"ROLE_ADMIN"})
+
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public List<UserDTO> findAll()
@@ -89,7 +89,7 @@ public class UserController
         return userService.findAll();
     }
 
-    @Secured({"ROLE_ADMIN"})
+
     @GetMapping("/{username}")
     public ResponseEntity<UserDTO> findByUsername(@PathVariable String username)
     {
@@ -106,7 +106,7 @@ public class UserController
                         );
     }
 
-    @Secured({"ROLE_ADMIN"})
+
     @PutMapping("makeAdmin/{username}")
     public ResponseEntity<UserDTO> makeAdmin(@PathVariable String username)
     {

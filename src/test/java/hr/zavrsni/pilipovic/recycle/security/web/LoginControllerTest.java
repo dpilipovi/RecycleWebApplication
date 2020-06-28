@@ -23,32 +23,45 @@ class LoginControllerTest {
 
 
     @Test
-    void authenticate() throws Exception {
+    void authenticate() {
 
+
+        try {
+            this.token = mockMvc.perform(
+                    post("/api/authenticate")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content("{\"username\": \"pperic\"," +
+                                    "\"password\": \"pass\"}")
+                            .accept(MediaType.APPLICATION_JSON)
+                            .with(csrf())
+            )
+                    .andExpect(status().isOk())
+                    .andReturn()
+                    .getResponse()
+                    .getHeader("Authorization");
+
+        } catch (Exception e) {
+            fail();
+        }
+
+    }
+
+    @Test
+    void authenticateExpectIsUnauthorited()
+    {
         // Unauthorized
-        mockMvc.perform(
-                post("/api/authenticate")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"username\": \"test\"," +
-                                "\"password\": \"testpassword\"}")
-                        .accept(MediaType.APPLICATION_JSON)
-                        .with(csrf())
-        )
-                .andExpect(status().isUnauthorized());
-
-        // Authorized
-        this.token = mockMvc.perform(
-                post("/api/authenticate")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"username\": \"admin\"," +
-                                "\"password\": \"pass\"}")
-                        .accept(MediaType.APPLICATION_JSON)
-                        .with(csrf())
-        )
-                .andExpect(status().isOk())
-                .andReturn()
-                .getResponse()
-                .getHeader("Authorization");
-
+        try {
+            mockMvc.perform(
+                    post("/api/authenticate")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content("{\"username\": \"test\"," +
+                                    "\"password\": \"testpassword\"}")
+                            .accept(MediaType.APPLICATION_JSON)
+                            .with(csrf())
+            )
+                    .andExpect(status().isUnauthorized());
+        } catch (Exception e) {
+            fail();
+        }
     }
 }

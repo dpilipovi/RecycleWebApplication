@@ -21,4 +21,10 @@ public class VehicleCommand {
     @NotNull(message = "Registration must not be null!")
     private int firstRegistrationYear;
 
+    public VehicleCommand(String brand, int firstRegistrationYear)
+    {
+        this.brand = brand;
+        this.firstRegistrationYear = firstRegistrationYear;
+    }
+
 }

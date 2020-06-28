@@ -25,14 +25,13 @@ public class VehicleController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @Secured({"ROLE_ADMIN"})
     @GetMapping
     public List<VehicleDTO> findAll()
     {
         return vehicleService.findAll();
     }
 
-    @Secured({"ROLE_ADMIN"})
+
     @GetMapping("/{id}")
     public ResponseEntity<VehicleDTO> findById(@PathVariable long id)
     {
@@ -48,7 +47,6 @@ public class VehicleController {
                 );
     }
 
-    @Secured({"ROLE_ADMIN"})
     @PostMapping
     public ResponseEntity<VehicleDTO> save(@Valid @RequestBody VehicleCommand vehicleCommand)
     {
@@ -64,7 +62,6 @@ public class VehicleController {
                 );
     }
 
-    @Secured({"ROLE_ADMIN"})
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id){
@@ -72,7 +69,6 @@ public class VehicleController {
         vehicleService.deleteById(id);
     }
 
-    @Secured({"ROLE_ADMIN"})
     @PutMapping
     public ResponseEntity<VehicleDTO> editVehicle(@Valid @RequestBody VehicleCommand vehicleCommand)
     {

@@ -36,8 +36,6 @@ public class UserServiceImpl implements UserService {
 
         User user = optional.get();
 
-        System.out.println(editedUser.toString());
-        System.out.println(editedUser.getRecycles().toString());
 
         user.setFirstname(editedUser.getFirstname());
         user.setLastname(editedUser.getLastname());
@@ -45,7 +43,7 @@ public class UserServiceImpl implements UserService {
         user.setEmail(editedUser.getEmail());
         user.setUsername(editedUser.getUsername());
         if(editedUser.getPassword().compareTo("dont change") != 0) user.setPassword(bCryptPasswordEncoder.encode(editedUser.getPassword()));
-        user.setRecycles(editedUser.getRecycles());
+        if(editedUser.getRecycles() != null) user.setRecycles(editedUser.getRecycles());
 
 
         return Optional.of(mapToUserDTO(userRepository.save(user)));

@@ -30,7 +30,7 @@ public class ScheduleController
         this.scheduleService = scheduleService;
     }
 
-    @Secured({"ROLE_ADMIN"})
+
     @PostMapping
     public ResponseEntity<ScheduleDTO> saveSchedule(@Valid @RequestBody ScheduleCommand scheduleCommand) {
 
@@ -52,7 +52,7 @@ public class ScheduleController
         return scheduleService.findAll();
     }
 
-    @Secured({"ROLE_ADMIN"})
+
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void delete(@PathVariable long id){
@@ -60,7 +60,7 @@ public class ScheduleController
         scheduleService.deleteById(id);
     }
 
-    @Secured({"ROLE_ADMIN"})
+
     @PutMapping
     public ResponseEntity<ScheduleDTO> editSchedule(@Valid @RequestBody ScheduleCommand scheduleCommand)
     {

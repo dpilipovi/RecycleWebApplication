@@ -1,5 +1,6 @@
 package hr.zavrsni.pilipovic.recycle.security;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
@@ -14,6 +15,7 @@ public final class SecurityUtils {
     private SecurityUtils() {
     }
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public static Optional<String> getCurrentUserUsername() {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         return Optional.ofNullable(extractPrincipal(securityContext.getAuthentication()));

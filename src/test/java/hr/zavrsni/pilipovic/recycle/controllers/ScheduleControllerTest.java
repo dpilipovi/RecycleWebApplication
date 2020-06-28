@@ -35,89 +35,89 @@ class ScheduleControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    void findAll() throws Exception {
-        this.mockMvc.perform(get("/api/schedule"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    void findAll() {
+        try {
+            this.mockMvc.perform(get("/api/schedule"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+        } catch (Exception e) {
+            fail();
+        }
     }
 
 
     @Test
     @WithMockUser(username = "admin", password = "pass", roles = {"ADMIN"})
-    //@DirtiesContext
-    void saveSchedule() throws Exception {
+    void saveSchedule() {
 
-        //CREATED
 
-        ScheduleCommand scheduleCommand = new ScheduleCommand("test", "Plastic",1);
+        ScheduleCommand scheduleCommand = new ScheduleCommand("test", "Plastic", 1);
 
-        this.mockMvc.perform( MockMvcRequestBuilders
-                .post("/api/schedule")
-                .content(objectMapper.writeValueAsString(scheduleCommand))
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isCreated())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+        try {
+            this.mockMvc.perform(MockMvcRequestBuilders
+                    .post("/api/schedule")
+                    .content(objectMapper.writeValueAsString(scheduleCommand))
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isCreated())
+                    .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+        } catch (Exception e) {
+            fail();
+        }
 
-       /* //EXPECTATION FAILED
-
-        ScheduleCommand scheduleCommand2 = new ScheduleCommand(1,"test", "Plastic",1);
-
-        this.mockMvc.perform( MockMvcRequestBuilders
-                .post("/api/schedule")
-                .content(objectMapper.writeValueAsString(scheduleCommand2))
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isExpectationFailed());
-
-        */
     }
 
 
     @Test
     @WithMockUser(username = "admin", password = "pass", roles = {"ADMIN"})
-    //@DirtiesContext
-    void editSchedule() throws Exception{
-
-        //OK
-
-        ScheduleCommand scheduleCommand = new ScheduleCommand(1,"test", "Plastic",1);
-
-        this.mockMvc.perform( MockMvcRequestBuilders
-                .put("/api/schedule")
-                .content(objectMapper.writeValueAsString(scheduleCommand))
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    void editSchedule() {
 
 
-     /*   //NOT FOUND
+        ScheduleCommand scheduleCommand = new ScheduleCommand(1, "test", "Plastic", 1);
 
-        ScheduleCommand scheduleCommand2 = new ScheduleCommand(17718317,"test", "Plastic",1);
+        try {
 
-        this.mockMvc.perform( MockMvcRequestBuilders
-                .put("/api/schedule")
-                .content(objectMapper.writeValueAsString(scheduleCommand2))
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound());
+            this.mockMvc.perform(MockMvcRequestBuilders
+                    .put("/api/schedule")
+                    .content(objectMapper.writeValueAsString(scheduleCommand))
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .accept(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+        } catch (Exception e) {
+            fail();
+        }
 
-      */
     }
 
 
     @Test
     @WithMockUser(username = "admin", password = "pass", roles = {"ADMIN"})
-    //@DirtiesContext
-    void delete() throws Exception {
+    void delete() {
 
-        //NO CONTENT
-        this.mockMvc.perform( MockMvcRequestBuilders.delete("/api/schedule/{id}", 2))
-                .andExpect(status().isNoContent());
+        try {
+            this.mockMvc.perform(MockMvcRequestBuilders.delete("/api/schedule/{id}", 2))
+                    .andExpect(status().isNoContent());
+        } catch (Exception e) {
+            fail();
+        }
 
-        //BAD REQUEST
-        this.mockMvc.perform( MockMvcRequestBuilders.delete("/api/schedule/{id}", "fake"))
-                .andExpect(status().isBadRequest());
     }
+
+
+    @Test
+    @WithMockUser(username = "admin", password = "pass", roles = {"ADMIN"})
+    void deleteExpectBadRequest() {
+
+        try {
+            this.mockMvc.perform(MockMvcRequestBuilders.delete("/api/schedule/{id}", "fake"))
+                    .andExpect(status().isBadRequest());
+
+        } catch (Exception e) {
+            fail();
+        }
+
+    }
+
 }
+
