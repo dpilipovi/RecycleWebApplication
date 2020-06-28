@@ -3,16 +3,13 @@ package hr.zavrsni.pilipovic.recycle.controllers;
 
 import java.util.List;
 
-import hr.zavrsni.pilipovic.recycle.entities.Schedule;
 import hr.zavrsni.pilipovic.recycle.entities.ScheduleCommand;
 import hr.zavrsni.pilipovic.recycle.entities.ScheduleDTO;
-
 import hr.zavrsni.pilipovic.recycle.services.ScheduleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import javax.validation.Valid;
 

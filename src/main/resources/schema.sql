@@ -70,3 +70,12 @@ create table if not exists vehicle
  first_registration_year int(4) not null,
  location varchar(250) not null
 );
+
+create table if not exists announcement
+(
+ id int AUTO_INCREMENT primary key,
+ message text not null,
+ title varchar(100) not null,
+ created timestamp not null,
+ updated timestamp
+);

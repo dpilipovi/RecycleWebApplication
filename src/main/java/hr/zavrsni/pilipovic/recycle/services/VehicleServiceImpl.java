@@ -46,6 +46,7 @@ public class VehicleServiceImpl implements VehicleService {
 
         Vehicle vehicle = optional.get();
 
+        vehicle.setId(vehicleCommand.getId());
         vehicle.setBrand(vehicleCommand.getBrand());
         vehicle.setFirstRegistrationYear(vehicleCommand.getFirstRegistrationYear());
 

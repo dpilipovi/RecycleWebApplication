@@ -4,7 +4,6 @@ import hr.zavrsni.pilipovic.recycle.entities.UserCommand;
 import hr.zavrsni.pilipovic.recycle.entities.UserDTO;
 import hr.zavrsni.pilipovic.recycle.services.UserService;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import hr.zavrsni.pilipovic.recycle.security.SecurityUtils;
 import org.springframework.http.ResponseEntity;
