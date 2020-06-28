@@ -44,6 +44,7 @@ insert into recycle (id, amount, year_month, type) values (14, 1, 202003,'Metal'
 insert into recycle (id, amount, year_month, type) values (15, 4, 202003,'Plastic');
 insert into recycle (id, amount, year_month, type) values (16, 2, 202003,'Paper');
 
+
 insert into user_recycle (user_id, recycle_id) values (1, 1);
 insert into user_recycle (user_id, recycle_id) values (1, 2);
 insert into user_recycle (user_id, recycle_id) values (1, 3);

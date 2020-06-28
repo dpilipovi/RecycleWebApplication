@@ -10,12 +10,12 @@ DROP TABLE IF EXISTS vehicle ;
 create table if not exists user
 (
 id int AUTO_INCREMENT primary key,
-username varchar(100) not null,
+username varchar(100) unique not null,
 password varchar(250) not null,
 firstname varchar(250) not null,
 lastname varchar(250) not null,
 address varchar(250) not null,
-email varchar(250) not null
+email varchar(250) unique not null
 );
 
 create table if not exists authority

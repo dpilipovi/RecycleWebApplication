@@ -28,7 +28,7 @@ public class UserCommand implements Serializable {
     private String username;
     @NotBlank(message = "Password must not be empty")
     private String password;
-    @NotNull(message = "Recycles must not be null")
+   // @NotNull(message = "Recycles must not be null")
     private Set<Recycle> recycles;
 
 

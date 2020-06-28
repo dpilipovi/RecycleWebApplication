@@ -3,7 +3,10 @@ package hr.zavrsni.pilipovic.recycle.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hr.zavrsni.pilipovic.recycle.entities.ScheduleCommand;
 import hr.zavrsni.pilipovic.recycle.entities.UserCommand;
+import hr.zavrsni.pilipovic.recycle.services.UserService;
+import hr.zavrsni.pilipovic.recycle.services.UserServiceImpl;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,8 +34,10 @@ class UserControllerTest {
     @Autowired
     MockMvc mockMvc;
 
+
     @Autowired
     private ObjectMapper objectMapper;
+
 
 
     @Test
@@ -61,7 +66,7 @@ class UserControllerTest {
 
     @Test
     @WithMockUser(username = "admin", password = "pass", roles = {"ADMIN"})
-    @DirtiesContext
+    //@DirtiesContext
     void editUser() throws Exception{
 
         //OK
@@ -71,14 +76,14 @@ class UserControllerTest {
         this.mockMvc.perform( MockMvcRequestBuilders
                 .put("/api/user")
                 .content(objectMapper.writeValueAsString(userCommand))
-                .contentType(MediaType.APPLICATION_JSON)
+            .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
-    }
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+}
 
     @Test
-    @DirtiesContext
+        //@DirtiesContext
     void addUser() throws Exception {
 
         //CREATED
@@ -96,12 +101,20 @@ class UserControllerTest {
 
     @Test
     @WithMockUser(username = "admin", password = "pass", roles = {"ADMIN"})
-    @DirtiesContext
+    //@DirtiesContext
     void delete() throws Exception {
 
         //NO CONTENT
         this.mockMvc.perform( MockMvcRequestBuilders.delete("/api/user/{id}", "admin"))
                 .andExpect(status().isNoContent());
+
+
+    }
+
+    @Test
+    @WithMockUser(username = "admin", password = "pass", roles = {"ADMIN"})
+    //@DirtiesContext
+    void deleteShouldReturnForbidden() throws Exception {
 
         //FORBIDDEN
         this.mockMvc.perform( MockMvcRequestBuilders.delete("/api/user/{id}", "admin")
@@ -111,19 +124,31 @@ class UserControllerTest {
 
     @Test
         //@WithMockUser(username = "admin", password = "pass", roles = {"ADMIN"})
-    void findAll() throws Exception {
+    void findAll() {
 
         //OK
 
-        this.mockMvc.perform(get("/api/user")
-                .with(user("admin").password("pass").roles("ADMIN")))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+        try {
+            this.mockMvc.perform(get("/api/user")
+                    .with(user("admin").password("pass").roles("ADMIN")))
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+        } catch (Exception e) {
+            fail();
+        }
 
-        //UNAUTHORIZED
 
-        this.mockMvc.perform(get("/api/user"))
-                .andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void findAllShouldReturnForbidden() {
+        try {
+            this.mockMvc.perform(get("/api/user")
+                    .with(user("pperic").password("pass").roles("USER")))
+                    .andExpect(status().isForbidden());
+        } catch (Exception e) {
+            fail();
+        }
     }
 
     @Test
@@ -147,7 +172,7 @@ class UserControllerTest {
 
     @Test
     @WithMockUser(username = "admin", password = "pass", roles = {"ADMIN"})
-    @DirtiesContext
+        //@DirtiesContext
     void makeAdmin() throws Exception {
 
         //OK

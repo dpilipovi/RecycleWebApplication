@@ -81,6 +81,7 @@ public class UserController
         userService.deleteByUsername(username);
     }
 
+    @Secured({"ROLE_ADMIN"})
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public List<UserDTO> findAll()
