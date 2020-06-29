@@ -14,7 +14,7 @@ public interface UserService {
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
     Optional<UserDTO> editUser(UserCommand editedUser);
 
-    @Secured({"ROLE_ADMIN"})
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     Optional<UserDTO> findByUsername(String username);
 
     @Secured({"ROLE_ADMIN", "ROLE_USER"})

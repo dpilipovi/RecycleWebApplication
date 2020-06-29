@@ -140,5 +140,5 @@ insert into vehicle (id, brand, first_registration_year, location) values (2, 'M
 insert into vehicle (id, brand, first_registration_year, location) values (3, 'Mercedes', 2013, 'Trg bana Josipa Jelacica 1');
 insert into vehicle (id, brand, first_registration_year, location) values (4, 'MAN', 2014, 'Ulica grada Vukovara 1');
 
-insert into announcement (id, title, message ) values (1, 'Promjena dana odvoza plastike u Ilici', 'Od 26.6.2020. plastika u ulici Ilica će se odvoziti petkom umjesto ponedjeljkom.');
-insert into announcement (id, title, message ) values (2, 'Promjena dana odvoza metala u Ilici', 'Od 22.6.2020. metal u ulici Ilica će se odvoziti ponedjeljkom umjesto petkom.');
+insert into announcement (id, title, message, created ) values (1, 'Promjena dana odvoza plastike u Ilici', 'Od 26.6.2020. plastika u ulici Ilica će se odvoziti petkom umjesto ponedjeljkom.', CURRENT_TIMESTAMP );
+insert into announcement (id, title, message, created ) values (2, 'Promjena dana odvoza metala u Ilici', 'Od 22.6.2020. metal u ulici Ilica će se odvoziti ponedjeljkom umjesto petkom.', CURRENT_TIMESTAMP );
